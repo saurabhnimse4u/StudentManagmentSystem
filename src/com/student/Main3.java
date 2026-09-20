@@ -14,10 +14,12 @@ public class Main3 {
 	public static void main(String[] args) {
 
 		System.out.println("=============Student Management System===========");
+		
 		scanner = new Scanner(System.in);
 		studList = new ArrayList<Student>();
+		
 		while (true) {
-			System.out.println("=====Welcome=====");
+			System.out.println("==========Welcome===================");
 			System.out.println("Select an option");
 			System.out.println("1 Register a student");
 			System.out.println("2 Find student with StudentID");
@@ -26,7 +28,6 @@ public class Main3 {
 			System.out.println("5 Exit");
 
 			int option = scanner.nextInt();
-
 			switch (option) {
 			case 1:
 				enrollStudent(scanner);
@@ -37,13 +38,11 @@ public class Main3 {
 			case 3:
 				printAllStudentInformation();
 				break;
-
 			case 4:
 				sortByName();
 				break;
 			case 5:
 				exit();
-
 			default:
 				System.out.println("Invalid option is selected");
 			}
@@ -51,19 +50,15 @@ public class Main3 {
 	}
 
 	private static void enrollStudent(Scanner scanner) {
-
 		System.out.println("Enter student name: ");
 		String name = scanner.next();
-
 		System.out.println("Enter student age: ");
 		int age = scanner.nextInt();
-
 		System.out.println("Enter student ID");
 		String studId = scanner.next();
-
+		
 		Student stud = new Student(name, age, studId);
 		studList.add(stud);
-
 		while (true) {
 			System.out.println("Enter course :");
 			String course = scanner.next();
@@ -74,9 +69,8 @@ public class Main3 {
 		}
 		stud.printStudentInformation();
 	}
-
+	
 	private static void findStudentByID(Scanner scanner) {
-
 		Student studentFound = null;
 		System.out.println("Enter the Student ID and search: ");
 		String studID=scanner.next();
@@ -89,8 +83,7 @@ public class Main3 {
 		studentFound.printStudentInformation();
 	}
 
-	private static void printAllStudentInformation() {
-		
+	private static void printAllStudentInformation() {	
 		if(studList.size()>0) {
 		System.out.println("=====Print all student information====");
 		for (Student s : studList) {
@@ -105,10 +98,9 @@ public class Main3 {
 
 	private static void exit() {
 		System.exit(0);
-
 	}
 
-	// Comparator
+//	// Comparator
 	private static void sortByName() {
 		Comparator<Student> studentNameCompare = (o1, o2) -> o1.getName().compareTo(o2.getName());
 		Collections.sort(studList, studentNameCompare);
@@ -116,17 +108,17 @@ public class Main3 {
 		printAllStudentInformation();
 		
 	}
-
-    // Stream and Exception handling
-	public static Student findSearchStudentID(String studId) {
-		Student result = null;
-		try {
-			result = studList.stream().filter(x -> x.getStudId().equalsIgnoreCase(studId)).findFirst()
-					.orElseThrow(() -> new RuntimeException("No Data found"));
-		} catch (RuntimeException e) {
-			System.out.println("Record not found" + studId + " ");
-		}
-		return result;
-	}
+//
+//    // Stream and Exception handling
+//	public static Student findSearchStudentID(String studId) {
+//		Student result = null;
+//		try {
+//			result = studList.stream().filter(x -> x.getStudId().equalsIgnoreCase(studId)).findFirst()
+//					.orElseThrow(() -> new RuntimeException("No Data found"));
+//		} catch (RuntimeException e) {
+//			System.out.println("Record not found" + studId + " ");
+//		}
+//		return result;
+//    }
 
 }
